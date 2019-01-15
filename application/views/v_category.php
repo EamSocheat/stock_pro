@@ -39,13 +39,13 @@
 							        <div class="col-sm-4 col-md-4 col-lg-4">
     									<div class="form-group form-inline">
                                             <label for="txtSrchPosNm" class="control-label" data-i18ncd="lb_name">Name</label>
-                                            <input type="text" class="form-control input-sm" id="txtSrchPosNm" placeholder="Name">
+                                            <input type="text" class="form-control input-sm" id="txtSrchCatNm" placeholder="Name">
                                         </div>
     								</div>
     								<div class="col-sm-4 col-md-4 col-lg-4">
     									<div class="form-group form-inline">
                                             <label for="txtSrchPosNmKh" class="control-label" data-i18ncd="lb_name_kh">Khmer Name</label>
-                                            <input type="text" class="form-control input-sm" id="txtSrchPosNmKh" placeholder="Khmer Name">
+                                            <input type="text" class="form-control input-sm" id="txtSrchCatNmKh" placeholder="Khmer Name">
                                         </div>
     								</div>
     								<!-- <div class="col-sm-3 col-md-3 col-lg-3">
@@ -65,7 +65,7 @@
 							    </div>
 								<div class="col-sm-12 col-md-12 col-lg-12">
 								    <button id="btnSearch" type="button" class="btn btn-success btn-sm pull-right" onclick="_thisPage.loadData(1);"><i class="fa fa-search" aria-hidden="true"></i> <span data-i18ncd="lb_search">Search</span></button>
-									<button id="btnReset" type="button" class="btn btn-warning btn-sm pull-right" style="margin-right: 5px"><i class="fa fa-refresh" aria-hidden="true"></i> <span data-i18ncd="btn_reset">Reset</span></button>
+									<button id="btnReset"  type="button" class="btn btn-warning btn-sm pull-right" style="margin-right: 5px"><i class="fa fa-refresh" aria-hidden="true"></i> <span data-i18ncd="btn_reset">Reset</span></button>
 								</div>
 							</div>
 						</div>
@@ -81,7 +81,7 @@
                         <div class="col-xs-12">
     					    <button type="button" id="btnDelete" class="btn btn-danger btn-sm" style="margin-right: 5px" onclick="fn_delete();"><i class="fa fa-trash" aria-hidden="true"></i> <span data-i18ncd="btn_delete">Delete</span></button>
     					    <!-- <button type="button" id="btnEdit" class="btn btn-primary btn-sm" style="margin-right: 5px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span data-i18ncd="btn_edit">Edit</span></button> -->
-    					    <button type="button" id="btnAddNew" class="btn btn-default btn-sm" onclick="_thisPage.addNewData();"><i class="fa fa-plus" aria-hidden="true"></i> <span data-i18ncd="btn_add_new">Add New</span></button>
+    					    <button type="button" id="btnAddNew" class="btn btn-default btn-sm" onclick="_thisPage.addNewCategory();"><i class="fa fa-plus" aria-hidden="true"></i> <span data-i18ncd="btn_add_new">Add New</span></button>
                         </div>
     				</div>
 				</div>
@@ -106,20 +106,23 @@
 				</div>
 				
 				<div class="box-body table-responsive">
-				  <table class="table table-hover" id="tblPosition">
+				  <table class="table table-hover" id="tblCategory">
 				    <thead>  
     					<tr>
     					  <th><input type="checkbox" id="chkAll" style="display:none;"></th>
-    					  <th data-i18ncd="lb_name">Name</th>
+    					  <th data-i18ncd="lb_name" colspan="2" style="text-align:center;">Name</th>
     					  <th data-i18ncd="lb_name_kh">Khmer Name</th>
     					  <th data-i18ncd="lb_des">Description</th>
     					  <th data-i18ncd="lb_docreate">Register Date</th>
     					  <th data-i18ncd="lb_action">Action</th>
     					</tr>
 					</thead>
-					<tbody>
-						<tr>
+					<tbody id="categoryList">
+						<!--  <tr>
 							<td><input type="checkbox"></td>
+							<td><div class="image">
+								<img id="staImgView" src="http://localhost/stock-project/assets/image/default-staff-photo.png" class="img-circle" style="width:25px;" alt="User Image">
+							</div></td>
 							<td><div>Category 000001</div></td>
 							<td><div>ប្រភេទទំនិញ  000001</div></td>
 							<td><div>ប្រភេទទំនិញ  000001</div></td>
@@ -127,7 +130,7 @@
 							<td class="text-center">
 								<button onclick="" type="button" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 							</td>
-						</tr>
+						</tr>-->
    					</tbody>
 				  </table>
 				</div>

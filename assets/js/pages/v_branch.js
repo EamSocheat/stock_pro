@@ -21,9 +21,9 @@ $(document).ready(function() {
 
 	//--pagination
     $("#paging").on("click", "li a", function(e) {
-        var pageNo = $(this).html();
-        _pageNo = pageNo;
-		getData(pageNo);
+      var pageNo = $(this).html();
+      _pageNo = pageNo;
+		  getData(pageNo);
     });
     $(".box-footer").on("click", "#btnGoToPage", function(e) {
         var pageNo = $("#txtGoToPage").val();
@@ -197,8 +197,6 @@ function deleteDataArr(dataArr){
 		url: $("#base_url").val() +"Branch/delete",
 		data: dataArr,
 		success: function(res) {
-			console.log("tset")
-			console.log(res)
 		    if(res > 0){
 		        stock.comm.alertMsg(res+$.i18n.prop("msg_del_com"));
 		        getData(_pageNo);

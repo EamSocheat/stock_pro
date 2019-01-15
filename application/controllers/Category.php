@@ -26,10 +26,22 @@ class Category extends CI_Controller{
         $this->load->view('v_category',$data);
     }
     
-    public function getSupplierData(){
+    public function getCategoryData(){
         if(!$this->M_check_user->check()){
             redirect('/Login');
         }
+        
+        $dataSrch = array (
+            'cat_id'    => $this->input->post('sup_id'),
+            'cat_nm'    => $this->input->post('categoryNm'),
+            'cat_nm_kh' => $this->input->post('categoryNmKh'),
+            'limit'     => $this->input->post('limit'),
+            'offset'    => $this->input->post('offset'),
+        );
+        
+        $data["OUT_REC"]     = $this->M_category->selectCategoryData($dataSrch);
+        $data["OUT_REC_CNT"] = $this->M_category->countCategoryData($dataSrch);
+        echo json_encode($data);
     }
     
 }

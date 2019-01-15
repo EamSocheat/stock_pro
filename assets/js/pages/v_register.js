@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	
 	stock.comm.inputNumber("usrPhone");

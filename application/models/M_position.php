@@ -57,7 +57,7 @@
 			$this->db->update('tbl_position', $data);
 		}
 		
-		public function insertSupplierDB($data){
+		public function insertPositionDB($data){
 			$this->db->insert('tbl_supplier',$data);
 			return $this->db->insert_id();
 		}

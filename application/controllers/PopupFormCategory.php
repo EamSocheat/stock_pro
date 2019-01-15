@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class PopupFormSupplier extends CI_Controller {
+class PopupFormCategory extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('M_check_user');
@@ -14,7 +14,7 @@ class PopupFormSupplier extends CI_Controller {
         if(!$this->M_check_user->check()){
             redirect('/Login');
         }
-        $this->load->view('popup/v_popup_form_supplier');
+        $this->load->view('popup/v_popup_form_category');
     }
     
 }
