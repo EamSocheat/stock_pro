@@ -144,7 +144,7 @@ function getData(page_no){
 			        	urlPhoto = $("#base_url").val()+"/upload"+ res.OUT_REC[i]["sta_photo"];
 			        }
 			        html += "<td class='chk_box'><input type='checkbox'></td>";
-			        html += "<td class='sta_image'><img style='width: 20px;height: 20px;' src='"+ urlPhoto +"' class='img-circle' /></td>";
+			        html += "<td class='sta_image'><img style='width: 30px;height: 30px;' src='"+ urlPhoto +"' class='img-circle' /></td>";
 			        html += "<td class='sta_nm'>"+res.OUT_REC[i]["sta_nm"]+"</td>";
 			        html += "<td class='sta_nm_kh'>"+res.OUT_REC[i]["sta_nm_kh"]+"</td>";
 			        html += "<td class='sta_gender'>"+res.OUT_REC[i]["sta_gender"]+"</td>";

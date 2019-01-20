@@ -8,7 +8,7 @@
     	}
 		
     	function selectCategoryData($dataSrch){
-    	    $this->db->select('cat_id, cat_nm, cat_nm_kh, cat_des, regDt, upDt, useYn, com_id');
+    	    $this->db->select('cat_id, cat_nm, cat_nm_kh, cat_photo, cat_des, regDt, upDt, useYn, com_id');
     	    //$this->db->from('tbl_category');
     	    $this->db->where('com_id', $_SESSION['comId']);
     	    $this->db->where('useYn', 'Y');

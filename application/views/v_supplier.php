@@ -33,7 +33,7 @@
 							<h3 class="box-title" data-i18ncd="lb_search">Search</h3>
 						</div>
 						<!-- /.box-header -->
-						<div class="box-body">
+						<div class="box-body" id="searchLayer">
 							<div class="row" >
 							    <div class="col-sm-12 col-md-12 col-lg-12 row">
 							        <div class="col-sm-4 col-md-4 col-lg-4">

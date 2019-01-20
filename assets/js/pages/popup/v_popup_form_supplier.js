@@ -12,7 +12,7 @@ var _thisPage = {
 			parent.$("#loading").hide();
 			supId = $("#supId").val();
 			_this.event();
-			top.$("#modalMdContent").height(458);
+			top.$("#modalMdContent").height(463);
 			
 			if(supId != ""){
 				_this.fillData(supId);
@@ -55,6 +55,7 @@ var _thisPage = {
 						parent.stock.comm.alertMsg($.i18n.prop("msg_save_com"),"suppplyNm");
 						if(str == "new"){
 						    clearForm();
+						    parent._this.loadData();
 						}else{
 							parent.stock.comm.closePopUpForm("PopupFormSupplier", parent.popupSupplierCallback);
 						}

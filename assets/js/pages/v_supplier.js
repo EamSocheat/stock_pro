@@ -24,8 +24,15 @@ var _thisPage = {
 			
 			input["limit"]		 = $("#perPage").val();
 			input["offset"]		 = parseInt($("#perPage").val()) * ( pageNo - 1);
-			input["suppplyNm"]	 = $("#txtSrchSupplNm").val().trim();
-			input["suppplyNmKh"] = $("#txtSrchSupplNmKh").val().trim();
+			if($("#searchLayer").is(":visible")){
+				console.log(true)
+				input["suppplyNm"]	 = $("#txtSrchSupplNm").val().trim();
+				input["suppplyNmKh"] = $("#txtSrchSupplNmKh").val().trim();
+			}else{
+				console.log(false)
+				input["suppplyNm"]	 = $("#txtSrchSupplNm").val("");
+				input["suppplyNmKh"] = $("#txtSrchSupplNmKh").val("");
+			}
 			
 		    $("#loading").show();
 		    $.ajax({
@@ -62,7 +69,7 @@ var _thisPage = {
 						stock.comm.renderPaging("paging", $("#perPage").val(), data.OUT_REC_CNT[0]["total_rec"], pageNo);
 					}else{
 						$("#chkAll").hide();
-						$("#supplList").append("<tr><td colspan='6' style='text-align:center;'>No data to show.</td></tr>");
+						$("#supplList").append("<tr><td colspan='9' style='text-align:center;'>No data to show.</td></tr>");
 						stock.comm.renderPaging("paging", $("#perPage").val(), 0, pageNo);
 					}
 					 
@@ -76,7 +83,7 @@ var _thisPage = {
 			var option = {};
 			var data = "id="+sup_id;
 			var controllerNm = "PopupFormSupplier";
-			option["height"] = "458px";
+			option["height"] = "463px";
 			
 			stock.comm.openPopUpForm(controllerNm, option, data);
 		}, addNewSupplier : function(){
@@ -84,7 +91,7 @@ var _thisPage = {
 			var data = "";
 			var controllerNm = "PopupFormSupplier";
 			var option = {};
-			option["height"] = "458px";
+			option["height"] = "463px";
 			
 			stock.comm.openPopUpForm(controllerNm, option, data);
 		}, deleteData : function(dataArr){

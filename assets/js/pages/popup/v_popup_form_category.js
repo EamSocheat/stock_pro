@@ -15,7 +15,7 @@ var _thisPage = {
 			parent.$("#loading").hide();
 			clearForm();
 			if($("#frmAct").val() == "U"){
-			    getDataEdit($("#braId").val());
+			    getDataEdit($("#cat_id").val());
 			    $("#popupTitle").html("<i class='fa fa-tags'></i> "+$.i18n.prop("btn_edit")+" "+ $.i18n.prop("lb_category"));
 			}else{
 			    $("#btnSaveNew").show();
@@ -35,7 +35,6 @@ var _thisPage = {
 				}else{
 			    	saveData("new");
 				}
-			
 			});
 			//
 			$("#btnSave").click(function(e){
@@ -61,11 +60,16 @@ var _thisPage = {
 
 function saveData(str){
     parent.$("#loading").show();
-    console.log($("#frmCateg").serialize());
+    $("#cat_id").appendTo("#frmCateg");
+    
 	$.ajax({
 		type: "POST",
-		url: $("#base_url").val() +"Staff/save",
-		data: $("#frmCateg").serialize()+ "&catId=" +$("#catId").val(),
+		url : $("#base_url").val() +"Category/save",
+		//data: $("#frmCateg").serialize(),//+ "&cat_id=" +$("#cat_id").val(),
+		data: new FormData($("#frmCateg")[0]),
+		cache: false,
+        contentType: false,
+        processData: false,
 		success: function(res) {
 		    parent.$("#loading").hide();
 			if(res =="OK"){
@@ -73,7 +77,7 @@ function saveData(str){
 				if(str == "new"){
 				    clearForm();
 				}else{
-				    parent.stock.comm.closePopUpForm("PopupFormStaff",parent.popupStaffCallback);
+				    parent.stock.comm.closePopUpForm("PopupFormCategory",parent.popupCategoryCallback);
 				}
 			}
 		},
@@ -84,25 +88,25 @@ function saveData(str){
 	});
 }
 
-function getDataEdit(bra_id){
+function getDataEdit(cat_id){
     $("#loading").show();
     $.ajax({
 		type: "POST",
-		url: $("#base_url").val() +"Branch/getBranch",
-		data: {"bra_id":bra_id},
+		url : $("#base_url").val() +"Category/getCategoryData",
+		data: {"cat_id":cat_id},
 		dataType: "json",
 		async: false,
 		success: function(res) {
-			
+			console.log("popup")
+			console.log(res.OUT_REC)
 			if(res.OUT_REC != null && res.OUT_REC.length >0){
-			    $("#txtCateNm").val(res.OUT_REC[0]["bra_nm"]);
-			    $("#braNmKh").val(res.OUT_REC[0]["bra_nm_kh"]);
-			    $("#braPhone").val(res.OUT_REC[0]["bra_phone1"]);
-			    $("#braPhone2").val(res.OUT_REC[0]["bra_phone2"]);
-			    $("#braEmail").val(res.OUT_REC[0]["bra_email"]);
-			    $("#braType").val(res.OUT_REC[0]["bra_type_id"]);
-			    $("#braAddr").val(res.OUT_REC[0]["bra_addr"]);
-			    $("#braDes").val(res.OUT_REC[0]["bra_des"]);
+				if(res.OUT_REC[0]["cat_photo"] != "" && res.OUT_REC[0]["cat_photo"] != null){
+					$("#categImgView").attr("src", $("#base_url").val()+"/upload"+res.OUT_REC[0]["cat_photo"]);
+				}
+				
+			    $("#txtCateNm").val(res.OUT_REC[0]["cat_nm"]);
+			    $("#txtCateNmKh").val(res.OUT_REC[0]["cat_nm_kh"]);
+			    $("#cateDescr").val(res.OUT_REC[0]["cat_des"]);
 			    $("#txtCateNm").focus();
 			}else{
 			    console.log(res);

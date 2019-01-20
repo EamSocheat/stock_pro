@@ -37,7 +37,7 @@ class Staff extends CI_Controller {
 	        redirect('/Login');
 	    }
 
-	    $staPhoto="";
+	    $staPhoto = "";
 	    if(!empty($_FILES['fileStaPhoto']['name'])){
 	        $staPhoto = $this->M_common->uploadImage($_FILES['fileStaPhoto'],'fileStaPhoto','./upload/stock/staff','/stock/staff/');
 	    }

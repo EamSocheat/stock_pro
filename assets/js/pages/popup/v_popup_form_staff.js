@@ -136,13 +136,13 @@ function saveData(str){
     parent.$("#loading").show();
 	$.ajax({
 		type: "POST",
-		url: $("#base_url").val() +"Staff/save",
+		url : $("#base_url").val() +"Staff/save",
 		data: new FormData($("#frmStaff")[0]),
 		cache: false,
         contentType: false,
         processData: false,
 		success: function(res) {
-			console.log(res);
+			
 		    parent.$("#loading").hide();
 			if(res =="OK"){
 				parent.stock.comm.alertMsg($.i18n.prop("msg_save_com"),"braNm");

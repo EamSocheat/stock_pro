@@ -35,12 +35,12 @@ var _thisPage = {
 					var html = "";
 					
 					if(data.OUT_REC.length > 0){
-						console.log(true)
+						
 						$.each(data.OUT_REC, function(i,v){
-							html += '<tr class="chk_box" data-id='+v.cat_id+'>';
-							html += '	<td><input type="checkbox"></td>';
+							html += '<tr data-id='+v.cat_id+'>';
+							html += '	<td class="chk_box"><input type="checkbox"></td>';
 							html += '   <td><div class="image">';
-							html += '       <img id="staImgView" src="http://localhost/stock-project/assets/image/default-staff-photo.png" class="img-circle" style="width:25px;" alt="User Image">';
+							html += '       <img id="staImgView" src="'+$("#base_url").val()+"/upload"+v.cat_photo+'" class="img-circle" style="width:25px;" alt="User Image">';
 							html += '   </div></td>';
 							html += '	<td><div>'+null2Void(v.cat_nm)+'</div></td>';
 							html += '	<td><div>'+null2Void(v.cat_nm_kh)+'</div></td>';
@@ -70,25 +70,77 @@ var _thisPage = {
 				    stock.comm.alertMsg($.i18n.prop("msg_err"));
 		        }
 			});
-		}, editData : function(pos_id){
+		}, editData : function(cat_id){
+			var data = "id="+cat_id;
+			data += "&action=U";
 			
+			var controllerNm = "PopupFormCategory";
+			var option = {};
+			option["height"] = "352px";
+		    stock.comm.openPopUpForm(controllerNm,option, data,"modal-md");		    
 		}, addNewCategory: function(){
 			$("#loading").show();
 			var data = "";
 			var controllerNm = "PopupFormCategory";
 			var option = {};
-			option["height"] = "350px";
+			option["height"] = "352px";
 			
 			stock.comm.openPopUpForm(controllerNm, option, data);
-		}, deleteData : function(dataArr){
+		}, deleteDataArr : function(dataArr){
 			
+			$.ajax({
+				type: "POST",
+				url: $("#base_url").val() +"Category/delete",
+				data: dataArr,
+				success: function(res) {
+				    if(res > 0){
+				        stock.comm.alertMsg(res+$.i18n.prop("msg_del_com"));
+				        _this.loadData(_pageNo);
+				    }else{
+				        stock.comm.alertMsg($.i18n.prop("msg_err_del"));
+				        return;
+				    }
+				    $("#loading").hide();
+				},
+				error : function(data) {
+					console.log(data);
+					stock.comm.alertMsg($.i18n.prop("msg_err"));
+		        }
+			});
 		}, event : function(){
 			
 		}
 }
 
-function popupCategoryCallback(){
+function deleteCategory(){
+	var chkVal = $('#categoryList tr td.chk_box input[type="checkbox"]:checked');
 	
+	if(chkVal.length <=0){
+		stock.comm.alertMsg($.i18n.prop("msg_con_del"));
+		return;
+	}
+	
+	stock.comm.confirmMsg($.i18n.prop("msg_sure_del"));
+	$("#btnConfirmOk").unbind().click(function(e){
+		$("#mdlConfirm").modal('hide');
+		
+		var delArr = [];
+		var delObj = {};
+		chkVal.each(function(i){
+			var delData = {};
+			var tblTr = $(this).parent().parent();
+			var catId = tblTr.attr("data-id");
+			delData["catId"] = catId;
+			delArr.push(delData);
+		});
+		
+		delObj["delObj"]= delArr;
+		_thisPage.deleteDataArr(delObj);
+	});
+}
+
+function popupCategoryCallback(){
+    _this.loadData(_pageNo);
 }
 
 function null2Void(dat){

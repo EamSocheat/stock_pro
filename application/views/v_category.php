@@ -79,7 +79,7 @@
 				<div class="row">
 					<div class="col-xs-12">
                         <div class="col-xs-12">
-    					    <button type="button" id="btnDelete" class="btn btn-danger btn-sm" style="margin-right: 5px" onclick="fn_delete();"><i class="fa fa-trash" aria-hidden="true"></i> <span data-i18ncd="btn_delete">Delete</span></button>
+    					    <button type="button" id="btnDelete" class="btn btn-danger btn-sm" style="margin-right: 5px" onclick="deleteCategory();"><i class="fa fa-trash" aria-hidden="true"></i> <span data-i18ncd="btn_delete">Delete</span></button>
     					    <!-- <button type="button" id="btnEdit" class="btn btn-primary btn-sm" style="margin-right: 5px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span data-i18ncd="btn_edit">Edit</span></button> -->
     					    <button type="button" id="btnAddNew" class="btn btn-default btn-sm" onclick="_thisPage.addNewCategory();"><i class="fa fa-plus" aria-hidden="true"></i> <span data-i18ncd="btn_add_new">Add New</span></button>
                         </div>
@@ -107,6 +107,15 @@
 				
 				<div class="box-body table-responsive">
 				  <table class="table table-hover" id="tblCategory">
+				  	<colgroup>
+				  		<col width="10px">
+				  		<col width="15px">
+				  		<col width="100px">
+				  		<col width="100px">
+				  		<col width="100px">
+				  		<col width="100px">
+				  		<col width="100px">
+				  	</colgroup>
 				    <thead>  
     					<tr>
     					  <th><input type="checkbox" id="chkAll" style="display:none;"></th>

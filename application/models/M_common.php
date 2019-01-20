@@ -19,11 +19,11 @@
 		
 	    
 		
-		public function uploadImage($fileTarget, $nameTarget, $path,$pathSave){
-		    $fileNmImg="";
+		public function uploadImage($fileTarget, $nameTarget, $path, $pathSave){
+		    $fileNmImg = "";
 		    if(!empty($fileTarget['name'])){
 		        $filesCount = count($fileTarget['name']);
-		        $YYY="YY";
+		        $YYY = "YY";
 		        for($i = 0; $i < $filesCount; $i++){
 		            $_FILES['userfile']['name'] 		= $fileTarget['name'][$i];
 		            $_FILES['userfile']['type'] 		= $fileTarget['type'][$i];

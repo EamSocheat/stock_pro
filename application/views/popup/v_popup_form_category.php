@@ -1,6 +1,6 @@
 <?php include 'v_popup_header.php';?>
 	  <!-- general form elements -->
-	  <input type="hidden" id="catId" name="catId" value="<?php if(isset($_GET["id"])){ echo $_GET["id"]; }?>"/>
+	  <input type="hidden" id="cat_id" name="cat_id" value="<?php if(isset($_GET["id"])){ echo $_GET["id"]; }?>"/>
 	  <input type="hidden" id="frmAct" name="frmAct" value="<?php if(isset($_GET["action"])){ echo $_GET["action"]; }?>"/>
 	  <!-- form start -->
       <form role="form" class="form-horizontal" id="frmCateg" action="" style="display: none">
