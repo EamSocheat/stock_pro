@@ -59,3 +59,4 @@ h4 ~ p {
 .example-content-widget{
   margin-bottom: 2px;
 }
+.txt_ellipsis{ white-space: nowrap;width: 50px;overflow: hidden;text-overflow: ellipsis; }

@@ -8,26 +8,26 @@ var _thisPage = {
 			_this = this;
 			_this.loadData();
 			_this.event();
-			stock.comm.checkAllTblChk("chkAll","tblCategory","chk_box");
+			stock.comm.checkAllTblChk("chkAll","tblImport","chk_box");
 		}, loadData : function(page_no){
 			var input = {};
 			var pageNo = 1;
 		    if(page_no != "" && page_no != null && page_no != undefined){
 		        if(page_no <= 0){
-		            page_no = 1;
+		        	page_no = 1;
 		        }
 		        pageNo = page_no;
 		    }
 			
-			input["limit"]		  = $("#perPage").val();
-			input["offset"]		  = parseInt($("#perPage").val()) * ( pageNo - 1);
-			input["categoryNm"]	  = $("#txtSrchCatNm").val();
-			input["categoryNmKh"] = $("#txtSrchSupplNmKh").val();
-			
+			input["limit"]		= $("#perPage").val();
+			input["offset"]		= parseInt($("#perPage").val()) * ( pageNo - 1);
+			input["importNm"]	= $("#txtSrchImportNm").val();
+			input["importNmKh"]	= $("#txtSrchImportNmKh").val();
+			return;
 		    $("#loading").show();
 		    $.ajax({
 				type: "POST",
-				url : $("#base_url").val() +"Category/getCategoryData",
+				url : $("#base_url").val() +"Import/getCategoryData",
 				data: input,
 				dataType: "json",
 				success: function(data) {
@@ -74,15 +74,15 @@ var _thisPage = {
 			var data = "id="+cat_id;
 			data += "&action=U";
 			
-			var controllerNm = "PopupFormCategory";
+			var controllerNm = "PopupFormImport";
 			var option = {};
 			option["height"] = "352px";
 		    stock.comm.openPopUpForm(controllerNm,option, data,"modal-md");		    
-		}, addNewCategory: function(){
+		}, addNewImport : function(){
 			$("#loading").show();
-			var data = "";
-			var controllerNm = "PopupFormCategory";
+			var data   = "";
 			var option = {};
+			var controllerNm = "PopupFormImport";
 			option["height"] = "352px";
 			
 			stock.comm.openPopUpForm(controllerNm, option, data);
@@ -90,7 +90,7 @@ var _thisPage = {
 			
 			$.ajax({
 				type: "POST",
-				url: $("#base_url").val() +"Category/delete",
+				url : $("#base_url").val() +"Category/delete",
 				data: dataArr,
 				success: function(res) {
 				    if(res > 0){
@@ -112,7 +112,7 @@ var _thisPage = {
 		}
 }
 
-function deleteCategory(){
+function deleteImport(){
 	var chkVal = $('#categoryList tr td.chk_box input[type="checkbox"]:checked');
 	
 	if(chkVal.length <=0){
