@@ -26,6 +26,23 @@ class Stock extends CI_Controller{
         $this->load->view('v_stock',$data);
     }    
     
+    public function getStock(){
+        if(!$this->M_check_user->check()){
+            redirect('/Login');
+        }
+        
+        $dataSrch = array(
+            'limit'         => $this->input->post('perPage'),
+            'offset'        => $this->input->post('offset'),
+            'sto_id'        => $this->input->post('stoId'),
+            'sto_nm'        => $this->input->post('stoNm'),
+            'sto_nm_kh'     => $this->input->post('stoNmKh'),
+            'bra_id'        => $this->input->post('braId'),
+        );
+        $data["OUT_REC"] = $this->M_stock->selectStock($dataSrch);
+        $data["OUT_REC_CNT"] = $this->M_stock->countStock($dataSrch);
+        echo json_encode($data);
+    }
 }
 
 ?>

@@ -38,14 +38,14 @@
 							    <div class="col-sm-12 col-md-12 col-lg-12 row">
 							        <div class="col-sm-4 col-md-4 col-lg-4">
     									<div class="form-group form-inline">
-                                            <label for="txtSrchPosNm" class="control-label" data-i18ncd="lb_name">Name</label>
-                                            <input type="text" class="form-control input-sm" id="txtSrchPosNm" placeholder="Name">
+                                            <label for="txtSrchStocNm" class="control-label" data-i18ncd="lb_name">Name</label>
+                                            <input type="text" class="form-control input-sm" id="txtSrchStocNm" placeholder="Name">
                                         </div>
     								</div>
     								<div class="col-sm-4 col-md-4 col-lg-4">
     									<div class="form-group form-inline">
-                                            <label for="txtSrchPosNmKh" class="control-label" data-i18ncd="lb_name_kh">Khmer Name</label>
-                                            <input type="text" class="form-control input-sm" id="txtSrchPosNmKh" placeholder="Khmer Name">
+                                            <label for="txtSrchStoNmKh" class="control-label" data-i18ncd="lb_name_kh">Khmer Name</label>
+                                            <input type="text" class="form-control input-sm" id="txtSrchStoNmKh" placeholder="Khmer Name">
                                         </div>
     								</div>
     								<!-- <div class="col-sm-3 col-md-3 col-lg-3">
@@ -106,21 +106,21 @@
 				</div>
 				
 				<div class="box-body table-responsive">
-				  <table class="table table-hover" id="">
+				  <table class="table table-hover" id="tblStock">
 				    <thead>  
     					<tr>
     					  <th><input type="checkbox" id="chkAll" style="display:none;"></th>
     					  <th data-i18ncd="lb_name">Name</th>
     					  <th data-i18ncd="lb_name_kh">Khmer Name</th>
+    					  <th data-i18ncd="lb_addr">Address</th>
     					  <th data-i18ncd="lb_des">Description</th>
-    					  <th data-i18ncd="lb_docreate">Register Date</th>
-    					  <th data-i18ncd="lb_action">Action</th>
+                          <th data-i18ncd="lb_action" style="text-align: center;">Action</th>
     					</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td><input type="checkbox"></td>
-							<td><div>Stock 000001</div></td>
+							<td><div>Static Stock 000001</div></td>
 							<td><div>000001</div></td>
 							<td><div>000001</div></td>
 							<td><div>2018-10-01</div></td>
