@@ -248,20 +248,13 @@ $('#adminCalendar').fullCalendar({
 });
 
 $(document).ready(function() {
-
-
 	/* onload */
 	
 	//render menu for user
 	getUserMenu();
-	
 	//
 	checkCookieLang();
 	//
-	
-	/*  */
-	
-	
 	$("#langDropSelect a").click(function(e){
 		$('#loading').show();
 		//$("#langDrop").html($(this).html());
@@ -352,10 +345,7 @@ function checkCookieLang(){
     	$("#langDrop").attr("data-lng","en");
     	$("#langDrop").html('<img style="width: 28px;" alt="" src="'+$("#base_url").val()+'assets/image/english.png"/>');
     }
-	
-
     $("#main-top").show();
-    
 }
 
 function changeLang(lang) {
@@ -367,15 +357,12 @@ function changeLang(lang) {
         async: true,
         callback: function () {
         	setAllBody("body", $.i18n.prop);
-        	//
-            $('#loading').hide();	
+            $('#loading').hide();
         }
     });
-
-
     //
-    var eleTarget=$("input[type='text'],input[type='email'], input[type='password'], textarea").not(":disabled");
-    var eleTargetDis=$("input[type='text'],input[type='email'], input[type='password'], textarea").not(":enabled");
+    var eleTarget	 = $("input[type='text'],input[type='email'], input[type='password'], textarea").not(":disabled");
+    var eleTargetDis = $("input[type='text'],input[type='email'], input[type='password'], textarea").not(":enabled");
 
     eleTargetDis.attr("placeholder","");
     
@@ -387,7 +374,6 @@ function changeLang(lang) {
 		holdLang="Enter ";
 	}
     eleTarget.each(function(i){
-      
 		var labelTxt = $("label[for='"+$(this).attr("id")+"']").eq(0).html();
 		if(labelTxt != null && labelTxt !="" && labelTxt != undefined){
 			labelTxt=labelTxt;
@@ -395,8 +381,6 @@ function changeLang(lang) {
 			labelTxt="";
 		}
     	$(this).attr("placeholder",holdLang+labelTxt);
-		
-		
 	});
 	
 }

@@ -1,18 +1,18 @@
 
 
 var _pageNo = 1;
-$(document).ready(function(){
+$(document).ready(function () {
 	_thisPage.onload();
 });
 
 var _thisPage = {
 		onload : function(){
-			_this = this;
+			var _this = this;
 			_this.loadData();
 			_this.event();
 			stock.comm.checkAllTblChk("chkAll","tblSupplier","chk_box");
 		}, loadData : function(page_no){
-			
+
 			var input = {};
 			var pageNo = 1;
 		    if(page_no != "" && page_no != null && page_no != undefined){
@@ -21,30 +21,29 @@ var _thisPage = {
 		        }
 		        pageNo = page_no;
 		    }
-			
+
 			input["limit"]		 = $("#perPage").val();
 			input["offset"]		 = parseInt($("#perPage").val()) * ( pageNo - 1);
+
 			if($("#searchLayer").is(":visible")){
-				console.log(true)
 				input["suppplyNm"]	 = $("#txtSrchSupplNm").val().trim();
 				input["suppplyNmKh"] = $("#txtSrchSupplNmKh").val().trim();
 			}else{
-				console.log(false)
-				input["suppplyNm"]	 = $("#txtSrchSupplNm").val("");
-				input["suppplyNmKh"] = $("#txtSrchSupplNmKh").val("");
+				input["suppplyNm"]	 = $("#txtSrchSupplNm").val();
+				input["suppplyNmKh"] = $("#txtSrchSupplNmKh").val();
 			}
-			
+
 		    $("#loading").show();
 		    $.ajax({
 				type: "POST",
-				url: $("#base_url").val() +"Supplier/getSupplierData",
+				url	: $("#base_url").val() +"Supplier/getSupplierData",
 				data: input,
 				dataType: "json",
 				success: function(data) {
 					$("#loading").hide();
 					var html = "";
 					$("#supplList").empty();
-					
+
 					if(data.OUT_REC.length > 0){
 						$.each(data.OUT_REC, function(i,v){
 							html += '<tr class="chk_box" data-id='+v.sup_id+'>';
@@ -62,7 +61,7 @@ var _thisPage = {
 							html += '	</td>';
 							html += '</tr>';
 						});
-						
+
 						$("#supplList").append(html);
 						$("#chkAll").show();
 						$("#chkAll").prop("checked",false);
@@ -72,7 +71,7 @@ var _thisPage = {
 						$("#supplList").append("<tr><td colspan='9' style='text-align:center;'>No data to show.</td></tr>");
 						stock.comm.renderPaging("paging", $("#perPage").val(), 0, pageNo);
 					}
-					 
+
 				}, error : function(data) {
 				    $("#loading").hide();
 				    stock.comm.alertMsg($.i18n.prop("msg_err"));
@@ -84,7 +83,7 @@ var _thisPage = {
 			var data = "id="+sup_id;
 			var controllerNm = "PopupFormSupplier";
 			option["height"] = "463px";
-			
+
 			stock.comm.openPopUpForm(controllerNm, option, data);
 		}, addNewSupplier : function(){
 			$("#loading").show();
@@ -92,7 +91,7 @@ var _thisPage = {
 			var controllerNm = "PopupFormSupplier";
 			var option = {};
 			option["height"] = "463px";
-			
+
 			stock.comm.openPopUpForm(controllerNm, option, data);
 		}, deleteData : function(dataArr){
 			console.log(dataArr)
@@ -142,16 +141,16 @@ function null2Void(dat){
 
 function fn_delete(){
 	var chkItem = $("#supplList input[type=checkbox]:checked");
-	
+
 	if(chkItem.length == 0){
 		stock.comm.alertMsg($.i18n.prop("msg_con_del"));
 		return;
 	}
-	
+
 	stock.comm.confirmMsg($.i18n.prop("msg_sure_del"));
 	$("#btnConfirmOk").unbind().click(function(e){
 		$("#mdlConfirm").modal('hide');
-		
+
 		var delArr = [];
 		var delObj = {};
 		$(chkItem).each(function(i,v){
@@ -161,7 +160,7 @@ function fn_delete(){
 			delData["supId"] = supId;
 			delArr.push(delData);
 		});
-		
+
 		delObj["delObj"] = delArr;
 		_thisPage.deleteData(delObj);
 	});
